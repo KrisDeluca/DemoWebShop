@@ -7,6 +7,7 @@ import io.cucumber.java.en.*;
 import pageFactory.Login;
 import pageFactory.Register;
 import pageFactory.Shop;
+import pageFactory.Wishlist;
 
 public class StepDef extends BaseClass{
 
@@ -20,6 +21,7 @@ public class StepDef extends BaseClass{
 		regObj = new Register(driver);
 		logObj = new Login(driver);
 		shopObj = new Shop(driver);
+		wishObj = new Wishlist(driver);
 	}
 	
 	@Then("PageTitle should be {string}")
@@ -134,13 +136,45 @@ public class StepDef extends BaseClass{
 		shopObj.selectItems();
 	}
 
-	@Then("Click on Update Shopping Cart")
-	public void click_on_update_shopping_cart() {
+	@Then("Click on Update Cart")
+	public void click_on_update_cart() {
 		shopObj.updateCart();
 	}
 
 	@Then("Cart should be empty")
 	public void cart_should_be_empty() {
-		Assert.assertEquals("Your Shopping Cart is empty!" , shopObj.emptyCartMsg());		
+		Assert.assertEquals(shopObj.emptyCartMsg(), "Your Shopping Cart is empty!");		
+	}
+	
+	//Wishlist
+	
+	@When("Enter {string} in Search Box")
+	public void enter_in_search_box(String item) {
+		wishObj.search(item);
+	}
+	
+	@When("Click on Item Link")
+	public void click_on_item_link() {
+		wishObj.selectItem();
+	}
+	
+	@And("Add to Wishlist")
+	public void add_to_wishlist() {
+		wishObj.addWish();
+	}
+		
+	@Then("Go to Wishlist Cart")
+	public void go_to_wishlist_Cart() {
+	    wishObj.wishCart();
+	}
+	
+	@And("{string} should be available on Wishlist")
+	public void should_be_available_on_wishlist(String item) {		
+		Assert.assertEquals(wishObj.checkItems(item), item, item+" is available in cart");
+	}
+
+	@Then("Wishlist should be empty")
+	public void wishlist_should_be_empty() {
+		Assert.assertEquals(wishObj.emptyCartMsg(), "The wishlist is empty!");		
 	}
 }

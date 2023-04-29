@@ -6,8 +6,8 @@
       <class name="testRunner.Run">
         <methods>
           <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="2"/>
           <include name="tearDownClass"/>
-          <include name="runScenario" invocation-numbers="0 1 2 3"/>
         </methods>
       </class> <!-- testRunner.Run -->
     </classes>

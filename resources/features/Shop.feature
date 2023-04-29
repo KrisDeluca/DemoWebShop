@@ -16,6 +16,7 @@ Scenario: Add a book to cart
 	Then PageTitle should be "Demo Web Shop. Checkout"
 	And Close the Browser
 	
+@sanity
 Scenario: Add a CellPhones to cart
 	When Click on Electronics under categories
 	And Click on Cellphones tab
@@ -47,6 +48,6 @@ Examples:
 Scenario: Clear cart
 	Then Go to Shopping Cart
 	And Select all items in cart
-	And Click on Update Shopping Cart
+	And Click on Update Cart
 	Then Cart should be empty
 	And Close the Browser
