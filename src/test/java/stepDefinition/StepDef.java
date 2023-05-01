@@ -2,7 +2,12 @@ package stepDefinition;
 
 import java.time.Duration;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
+
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 import pageFactory.Login;
 import pageFactory.Register;
@@ -27,6 +32,16 @@ public class StepDef extends BaseClass{
 	@Then("PageTitle should be {string}")
 	public void page_title_should_be(String title) {
 		Assert.assertEquals(regObj.pageTitle(), title);
+	}
+	
+	@AfterStep
+	public void takeScreenShotOnFailedScenario(Scenario scenario) 
+	{
+		if ((scenario.isFailed())) 
+		{
+			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+			scenario.attach(screenshot, "image/png", scenario.getName());
+		}
 	}
 	
 	//Register
