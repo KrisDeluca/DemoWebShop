@@ -2,7 +2,9 @@ package stepDefinition;
 
 import java.util.Properties;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
+import org.testng.asserts.SoftAssert;
 
 import pageFactory.Login;
 import pageFactory.Register;
@@ -19,6 +21,7 @@ public class BaseClass {
 	public static WebDriver driver;
 	public Properties read;
 	public BrowserStart start;
+	SoftAssert softAssertion;
 
     static {
         System.setProperty("extent.reporter.spark.start", "true");
@@ -34,4 +37,10 @@ public class BaseClass {
 		System.setProperty("systeminfo.build", "Kris Deluca");
 		System.setProperty("systeminfo.AppName", "Chrome");
     }
+    
+    public String randomMail()
+    {
+    	return "@"+RandomStringUtils.randomAlphabetic(4)+"."+RandomStringUtils.randomAlphabetic(3);
+    }
+
 }

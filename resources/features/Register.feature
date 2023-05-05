@@ -15,6 +15,8 @@ Scenario Outline: Successful registration complete
 	
 Examples:
 |Gender|Name|Email|Password|
-|Male|Rohan Singh|abcd@123.efg|12345678|
-#|Male|Raj Singh|efgh@456.abc|12345678|
-#|Female|Preeti Gupta|ijhk@789.xyz|12345678|
+|Male|Rohan Singh|abcd|12345678|
+|Male|Raj Singh|efgh|12345678|
+|Female|Preeti Gupta|ijhk|12345678|
+
+#to avoid the need to update email after every run, just provide the initials, rest text will be randomised in program

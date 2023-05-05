@@ -44,7 +44,7 @@ Examples:
 #|Slow|8 GB|320 GB|Image Viever|
 #|Medium|2 GB|400 GB|Other Office|
 
-@sanity
+@sanity @smoke
 Scenario: Clear cart
 	Then Go to Shopping Cart
 	And Select all items in cart

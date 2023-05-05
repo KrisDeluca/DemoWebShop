@@ -3,6 +3,7 @@ package pageFactory;
 import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -150,21 +151,34 @@ public class Shop  {
 		checkout.click();
 	}
 	
-	public void selectItems()
+	public String selectItems()
 	{
+		String check= "Not Empty";		//flag default off
 		for(WebElement i : removeItem)
 		{
 			js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'})", i);
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {}
+			
+			try {
 			i.click();
+			} catch (NoSuchElementException e) {
+				check= "Empty";		//flag set, cart is empty
+			}
 		}
+		return check;
 	}
 
-	public void updateCart()
+	public String updateCart()
 	{
-		removeAll.click();
+		String check= "Not Empty";		//flag default off
+		try {
+			removeAll.click();
+			} catch (NoSuchElementException e) {
+				check= "Empty";		//flag set, cart is empty
+			}
+		return check;
 	}
 	
 	public String emptyCartMsg()

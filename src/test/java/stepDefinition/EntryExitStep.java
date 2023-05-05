@@ -21,7 +21,7 @@ public class EntryExitStep extends BaseClass{
 	
 	@Then("Close the Browser")
 	public void close_the_browser() {
-		driver.quit();		
+		driver.quit();
 	}	
 	
 }

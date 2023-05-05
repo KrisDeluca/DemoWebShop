@@ -1,11 +1,18 @@
 package stepDefinition;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.time.Duration;
+import java.util.Properties;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
+import com.vimalselvam.cucumber.listener.Reporter;
+
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
@@ -44,6 +51,15 @@ public class StepDef extends BaseClass{
 		}
 	}
 	
+	@AfterAll
+	public static void writeExtentReport() {
+		Properties read = new Properties();
+		try {
+			read.load(new FileInputStream("resources/Config.properties"));
+		} catch (Exception e) {}
+		Reporter.loadXMLConfig(new File(read.getProperty("reportConfigPath")));
+	}
+	
 	//Register
 	
 	@When("Click on Register button to initiate")
@@ -55,7 +71,7 @@ public class StepDef extends BaseClass{
 	public void enter_details(String gender, String name, String email) {
 		regObj.selectGender(gender);
 		regObj.enterName(name);
-		regObj.enterEmail(email);
+		regObj.enterEmail(email+randomMail());
 	}
 
 	@When("Enter Password {string}")
@@ -148,17 +164,19 @@ public class StepDef extends BaseClass{
 
 	@Then("Select all items in cart")
 	public void select_all_items_in_cart() {
-		shopObj.selectItems();
+		softAssertion= new SoftAssert();
+		softAssertion.assertEquals(shopObj.selectItems(), "Not Empty", "Cart is Empty already");		
 	}
 
 	@Then("Click on Update Cart")
 	public void click_on_update_cart() {
-		shopObj.updateCart();
+		softAssertion.assertEquals(shopObj.updateCart(), "Not Empty", "Cart is Empty already");
 	}
 
 	@Then("Cart should be empty")
-	public void cart_should_be_empty() {
-		Assert.assertEquals(shopObj.emptyCartMsg(), "Your Shopping Cart is empty!");		
+	public void cart_should_be_empty() {		
+		Assert.assertEquals(shopObj.emptyCartMsg(), "Your Shopping Cart is empty!");
+		softAssertion.assertAll();
 	}
 	
 	//Wishlist

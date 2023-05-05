@@ -22,7 +22,7 @@ Examples:
 |Camera|
 |Sneaker|
 
-@sanity
+@sanity @smoke
 Scenario: Clear wishlist
 	Then Go to Wishlist Cart
 	And Select all items in cart

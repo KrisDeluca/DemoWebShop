@@ -8,11 +8,13 @@ import io.cucumber.testng.CucumberOptions;
 		glue="stepDefinition",
 		dryRun=false,
 		monochrome=true,
-		//tags="@regression",
+		//tags="@smoke",
 		//plugin= {"pretty","html:target/cucumberReports/WishListReport.html"}
-		plugin= {"pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",}
+		plugin = { "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:target/extentReports/report.html"}
 		)
 
 public class Run extends AbstractTestNGCucumberTests{
-
+	
 }
+
+
