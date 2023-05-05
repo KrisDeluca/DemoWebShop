@@ -22,21 +22,6 @@ public class BaseClass {
 	public Properties read;
 	public BrowserStart start;
 	SoftAssert softAssertion;
-
-    static {
-        System.setProperty("extent.reporter.spark.start", "true");
-        System.setProperty("extent.reporter.spark.out", "extentReports/Report.html");
-        
-        System.setProperty("screenshot.dir", "Screenshots/");		
-		System.setProperty("screenshot.rel.path", "../Screenshots");
-		
-		System.setProperty("basefolder.name", "target/extentReports/Report");
-		System.setProperty("basefolder.datetimepattern", "d-MMM-YY HH-mm-ss");
-		
-		System.setProperty("systeminfo.user", "dashboard,test,exception,author,device,log");
-		System.setProperty("systeminfo.build", "Kris Deluca");
-		System.setProperty("systeminfo.AppName", "Chrome");
-    }
     
     public String randomMail()
     {

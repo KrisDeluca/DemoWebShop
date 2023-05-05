@@ -58,6 +58,9 @@ public class StepDef extends BaseClass{
 			read.load(new FileInputStream("resources/Config.properties"));
 		} catch (Exception e) {}
 		Reporter.loadXMLConfig(new File(read.getProperty("reportConfigPath")));
+		Reporter.setSystemInfo("User", read.getProperty("UserName"));
+        Reporter.setSystemInfo("OS", read.getProperty("OS"));
+        Reporter.setTestRunnerOutput("Sample test runner output message");
 	}
 	
 	//Register
